@@ -24,3 +24,10 @@ export const TitleView = styled.body`
 export const MainLogo = styled.img`
   width: 120px;
 `;
+
+export const ChartFrame = styled.div`
+  flex: 1;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+`;
