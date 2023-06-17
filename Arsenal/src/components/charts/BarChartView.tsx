@@ -3,7 +3,7 @@ import {getPositionCounts, keyPlayer} from "../../utils";
 import BarChart from "../../styles/BarChart";
 import {ChartFrame} from "../../styles/theme";
 
-const BarChartView = () => {
+const BarChartView = ({selectedGame}: {selectedGame: any}) => {
   const result = getPositionCounts(keyPlayer);
 
   return (

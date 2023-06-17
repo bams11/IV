@@ -3,8 +3,9 @@ import {getPlayerRadar} from "../../utils";
 import Radar from "../../styles/Radar";
 import {ChartFrame} from "../../styles/theme";
 
-const RadarView = () => {
-  const result = getPlayerRadar();
+const RadarView = ({season}: {season: string}) => {
+  const result = getPlayerRadar(season);
+  console.log(result);
   return (
     <ChartFrame>
       <Radar data={result} />

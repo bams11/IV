@@ -5,17 +5,48 @@ import {ResponsiveBar} from "@nivo/bar";
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const BarChart = ({data}: any) => {
+export const WinChart = ({
+  data,
+  type,
+  selectedSeason,
+  setSelectedSeason,
+}: {
+  data: any;
+  type: "grouped" | "stacked";
+  selectedSeason: string;
+  setSelectedSeason: React.Dispatch<React.SetStateAction<any>>;
+}) => {
+  const selectedColorScheme = ["blue", "black", "red"];
+  const colorScheme = ["skyblue", "gray", "pink"];
+  const getColor = (bar: any) => {
+    let temp: number = 0;
+    if (bar.id === "W") {
+      temp = 0;
+    } else if (bar.id === "D") {
+      temp = 1;
+    } else {
+      temp = 2;
+    }
+    if (bar.data.season === selectedSeason) {
+      return selectedColorScheme[temp];
+    } else {
+      return colorScheme[temp];
+    }
+  };
   return (
     <ResponsiveBar
       data={data}
-      keys={["AM", "CM", "DM", "LB", "RW", "LW"]}
-      indexBy="player"
-      margin={{top: 20, right: 100, bottom: 80, left: 60}}
+      keys={["W", "D", "L"]}
+      onClick={(d) => {
+        setSelectedSeason(d.data.season);
+      }}
+      indexBy="season"
+      margin={{top: 50, right: 130, bottom: 50, left: 60}}
       padding={0.3}
+      groupMode={type}
       valueScale={{type: "linear"}}
       indexScale={{type: "band", round: true}}
-      colors={{scheme: "nivo"}}
+      colors={getColor}
       defs={[
         {
           id: "dots",
@@ -36,20 +67,7 @@ const BarChart = ({data}: any) => {
           spacing: 10,
         },
       ]}
-      fill={[
-        {
-          match: {
-            id: "fries",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "sandwich",
-          },
-          id: "lines",
-        },
-      ]}
+      fill={[]}
       borderColor={{
         from: "color",
         modifiers: [["darker", 1.6]],
@@ -59,16 +77,16 @@ const BarChart = ({data}: any) => {
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        tickRotation: -90,
-        legend: "player",
+        tickRotation: 0,
+        legend: "season",
         legendPosition: "middle",
-        legendOffset: 62,
+        legendOffset: 32,
       }}
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "positions",
+        legend: "win/lose",
         legendPosition: "middle",
         legendOffset: -40,
       }}
@@ -91,7 +109,7 @@ const BarChart = ({data}: any) => {
           itemHeight: 20,
           itemDirection: "left-to-right",
           itemOpacity: 0.85,
-          symbolSize: 10,
+          symbolSize: 20,
           effects: [
             {
               on: "hover",
@@ -104,11 +122,9 @@ const BarChart = ({data}: any) => {
       ]}
       role="application"
       ariaLabel="Nivo bar chart demo"
-      barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
-      }}
+      barAriaLabel={(e) =>
+        e.id + ": " + e.formattedValue + " in country: " + e.indexValue
+      }
     />
   );
 };
-
-export default BarChart;
