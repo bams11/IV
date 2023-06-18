@@ -1,13 +1,12 @@
 import React, {useEffect, useState} from "react";
-import {ChartBody, ChartFrame} from "../../styles/theme";
+import {ChartBody, ChartFrame, SmallChartFrame} from "../../styles/theme";
 import HeatmapView from "./HeatmapView";
 import BarChartView from "./BarChartView";
 import RadarView from "./RadarView";
 import WinChartView from "./WinChartView";
 import matchResult from "../../assets/results.json";
-import {MatchData, SelectedGame} from "../../utils";
+import {MatchData} from "../../utils";
 import DotView from "./DotView";
-import SeasonSlider from "./SeasonRadio";
 import SeasonRadio from "./SeasonRadio";
 
 const ChartView = () => {
@@ -15,7 +14,7 @@ const ChartView = () => {
     {}
   );
   const [selectedSeason, setSelectedSeason] = useState<string>("2017-18");
-  const [selectedGame, setSelectedGame] = useState<SelectedGame>();
+  const [selectedMatch, setSelectedMatch] = useState<MatchData | null>(null);
 
   const [seasons, setSeasons] = useState<string[]>([]);
   useEffect(() => {
@@ -43,6 +42,7 @@ const ChartView = () => {
         }
 
         filteredData[season].push({
+          ...d,
           date: date,
           result: result,
           opponent: opponent,
@@ -69,7 +69,7 @@ const ChartView = () => {
           setSelectedSeason={setSelectedSeason}
           season={selectedSeason}
         />
-        <BarChartView selectedGame={selectedGame} />
+        <BarChartView selectedMatch={selectedMatch} />
       </div>
       <div
         style={{
@@ -79,14 +79,24 @@ const ChartView = () => {
           height: "100%",
         }}
       >
-        <ChartFrame>
+        <ChartFrame style={{display: "flex", flexDirection: "column"}}>
           <SeasonRadio seasons={seasons} onSelectSeason={setSelectedSeason} />
           <DotView
             matchData={matchData}
-            selectedSeason={selectedSeason}
-            setSelectedSeason={setSelectedGame}
+            selectedMatch={selectedMatch}
+            setSelectedMatch={setSelectedMatch}
             season={selectedSeason}
           />
+          <div
+            style={{
+              flex: 1,
+              width: "100%",
+              display: "flex",
+            }}
+          >
+            <SmallChartFrame>팀 내 득점왕</SmallChartFrame>
+            <SmallChartFrame>팀 내 어시스트 왕</SmallChartFrame>
+          </div>
         </ChartFrame>
 
         <RadarView season={selectedSeason} />

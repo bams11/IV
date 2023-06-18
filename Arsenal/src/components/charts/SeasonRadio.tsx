@@ -15,7 +15,16 @@ const SeasonRadio: React.FC<SeasonRadioProps> = ({seasons, onSelectSeason}) => {
   };
 
   return (
-    <div style={{display: "flex", flexWrap: "wrap", width: "20%"}}>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        width: "100%",
+        justifyContent: "center",
+        marginTop: "30px",
+        marginBottom: "30px",
+      }}
+    >
       <label>시즌 선택:</label>
       {seasons.map((season) => (
         <label key={season}>

@@ -1,4 +1,5 @@
 import {ResponsiveBar} from "@nivo/bar";
+import {useState} from "react";
 
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
@@ -16,8 +17,10 @@ export const WinChart = ({
   selectedSeason: string;
   setSelectedSeason: React.Dispatch<React.SetStateAction<any>>;
 }) => {
-  const selectedColorScheme = ["blue", "black", "red"];
-  const colorScheme = ["skyblue", "gray", "pink"];
+  const [isSelected, setIsSelected] = useState<string | number | null>(null);
+  const colorScheme = ["#448CCB", "#959EA2", "#F15B5B"];
+  const selectedColorScheme = ["blue", "#616264", "red"];
+  const nonSeletedcolorScheme = ["skyblue", "#A4AAA7", "pink"];
   const getColor = (bar: any) => {
     let temp: number = 0;
     if (bar.id === "W") {
@@ -27,10 +30,13 @@ export const WinChart = ({
     } else {
       temp = 2;
     }
+    if (isSelected === null) {
+      return colorScheme[temp];
+    }
     if (bar.data.season === selectedSeason) {
       return selectedColorScheme[temp];
     } else {
-      return colorScheme[temp];
+      return nonSeletedcolorScheme[temp];
     }
   };
   return (
@@ -39,6 +45,9 @@ export const WinChart = ({
       keys={["W", "D", "L"]}
       onClick={(d) => {
         setSelectedSeason(d.data.season);
+        setIsSelected((prev) =>
+          prev === d.data.season ? null : d.data.season
+        );
       }}
       indexBy="season"
       margin={{top: 50, right: 130, bottom: 50, left: 60}}

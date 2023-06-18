@@ -56,11 +56,6 @@ interface PositionData {
   [key: string]: string[];
 }
 
-export interface MatchData {
-  date: string;
-  result: string;
-  opponent: string;
-}
 const getPlayerPositions = (playerName: string) => {
   // 각 선수가 어떤 포지션에서 경기를 했다고 가정한 데이터
   const playerPositions: PositionData = {
@@ -420,9 +415,11 @@ export const seasonObject: SeasonObject = {
   ],
 };
 
-export interface SelectedGame {
+export interface MatchData {
+  date: string;
+  result: string;
+  opponent: string;
   Season: string;
-  DateTime: string;
   HomeTeam: string;
   AwayTeam: string;
   FTHG: number;

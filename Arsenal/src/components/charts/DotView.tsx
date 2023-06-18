@@ -1,12 +1,17 @@
 import React from "react";
-import {convertSeasonFormat} from "../../utils";
+import {convertSeasonFormat, MatchData} from "../../utils";
 import {ChartFrame, Square} from "../../styles/theme";
-import {WinChartViewProps} from "./WinChartView";
+export interface DotViewProps {
+  matchData: any;
+  selectedMatch: MatchData | null;
+  setSelectedMatch: React.Dispatch<React.SetStateAction<any>>;
+  season: string;
+}
 
-const DotView: React.FC<WinChartViewProps> = ({
+const DotView: React.FC<DotViewProps> = ({
   matchData,
-  selectedSeason,
-  setSelectedSeason,
+  selectedMatch,
+  setSelectedMatch,
   season,
 }) => {
   const getBackgroundColor = (result: string): string => {
@@ -28,12 +33,16 @@ const DotView: React.FC<WinChartViewProps> = ({
       }}
     >
       <div className="season-name">{convertSeasonFormat(season)}</div>
-      <div style={{width: "200px", marginLeft: "10px", marginRight: "10px"}}>
+      <div style={{width: "240px", marginLeft: "10px", marginRight: "10px"}}>
         {Object.keys(matchData).length &&
           matchData[season].map((d: any, index: number) => (
             <Square
               key={index}
               style={{backgroundColor: getBackgroundColor(d.result)}}
+              onClick={() => {
+                console.log(d);
+                setSelectedMatch(d);
+              }}
             />
           ))}
       </div>

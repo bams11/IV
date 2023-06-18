@@ -5,7 +5,6 @@ import {ChartFrame} from "../../styles/theme";
 
 const RadarView = ({season}: {season: string}) => {
   const result = getPlayerRadar(season);
-  console.log(result);
   return (
     <ChartFrame>
       <Radar data={result} />

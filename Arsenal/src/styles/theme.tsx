@@ -32,9 +32,17 @@ export const ChartFrame = styled.div`
   display: flex;
 `;
 
+export const SmallChartFrame = styled.div`
+  flex: 1;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Square = styled.div`
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   display: inline-block;
   margin: 2px;
 `;
