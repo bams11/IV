@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/IV/static/css/main.073c9b0a.css",
+    "main.js": "/IV/static/js/main.e257a723.js",
+    "static/media/arsenal_logo.svg": "/IV/static/media/arsenal_logo.162fe5cbe8172a5b5e1b7d8957286240.svg",
+    "index.html": "/IV/index.html",
+    "main.073c9b0a.css.map": "/IV/static/css/main.073c9b0a.css.map",
+    "main.e257a723.js.map": "/IV/static/js/main.e257a723.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.e257a723.js"
+  ]
+}
