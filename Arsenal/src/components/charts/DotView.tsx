@@ -1,6 +1,6 @@
 import React from "react";
 import {convertSeasonFormat, MatchData} from "../../utils";
-import {ChartFrame} from "../../styles/theme";
+import {ChartFrame, SquareView} from "../../styles/theme";
 import {Square} from "../../styles/Square";
 export interface DotViewProps {
   matchData: any;
@@ -17,11 +17,11 @@ const DotView: React.FC<DotViewProps> = ({
 }) => {
   const getBackgroundColor = (result: string): string => {
     if (result === "W") {
-      return "skyblue";
+      return "#448CCB";
     } else if (result === "D") {
-      return "gray";
+      return "#959EA2";
     } else if (result === "L") {
-      return "pink";
+      return "#F15B5B";
     }
     return "";
   };
@@ -38,16 +38,7 @@ const DotView: React.FC<DotViewProps> = ({
     >
       <div
         style={{
-          textAlign: "center",
-          fontWeight: "bold",
-          fontSize: 20,
-          marginBottom: "20px",
-        }}
-      >
-        Seasonal Match Data
-      </div>
-      <div
-        style={{
+          position: "relative",
           width: "280px",
           marginLeft: "10px",
           marginRight: "10px",
@@ -55,6 +46,67 @@ const DotView: React.FC<DotViewProps> = ({
           justifyContent: "center",
         }}
       >
+        <div
+          style={{
+            position: "absolute",
+            right: "-100px",
+            top: "128px",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <SquareView
+              style={{
+                backgroundColor: "#448CCB",
+                width: "16px",
+                height: "16px",
+                margin: "1px",
+              }}
+            />
+            <div style={{fontSize: 12, marginLeft: "10px"}}>W</div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <SquareView
+              style={{
+                backgroundColor: "#959EA2",
+                width: "16px",
+                height: "16px",
+                margin: "1px",
+              }}
+            />
+            <div style={{fontSize: 12, marginLeft: "10px"}}>D</div>
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <SquareView
+              style={{
+                backgroundColor: "#F15B5B",
+                width: "16px",
+                height: "16px",
+                margin: "1px",
+              }}
+            />
+            <div style={{fontSize: 12, marginLeft: "10px"}}>L</div>
+          </div>
+        </div>
         {Object.keys(matchData).length &&
           matchData[season].map((d: any, index: number) => {
             return (
@@ -64,7 +116,7 @@ const DotView: React.FC<DotViewProps> = ({
                 style={{
                   backgroundColor: getBackgroundColor(d.result),
                   borderColor: "black",
-                  borderWidth: selectedMatch?.date === d.date ? "2px" : "0px",
+                  borderWidth: selectedMatch?.date === d.date ? "3px" : "0px",
                   borderStyle: "solid",
                   boxSizing: "border-box",
                 }}

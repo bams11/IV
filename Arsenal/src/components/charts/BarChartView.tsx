@@ -15,14 +15,23 @@ import BarChart from "../../styles/BarChart";
 
 const BarChartView = ({selectedMatch}: {selectedMatch: MatchData | null}) => {
   return (
-    <ChartFrame style={{flexDirection: "column"}}>
+    <ChartFrame
+      style={{
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <div style={{fontWeight: "bold", fontSize: 20, lineHeight: "24px"}}>
+        Selected Match Data
+      </div>
       <div
         style={{
           width: "100%",
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "flex-end",
           marginTop: "10px",
           marginBottom: "10px",
+          marginRight: "30px",
         }}
       >
         Opponent: {selectedMatch?.opponent}

@@ -19,7 +19,7 @@ export const WinChart = ({
 }) => {
   const [isSelected, setIsSelected] = useState<string | number | null>(null);
   const colorScheme = ["#448CCB", "#959EA2", "#F15B5B"];
-  const selectedColorScheme = ["blue", "#616264", "red"];
+  const selectedColorScheme = ["#3964E5", "#616264", "red"];
   const nonSeletedcolorScheme = ["skyblue", "#A4AAA7", "pink"];
   const getColor = (bar: any) => {
     let temp: number = 0;

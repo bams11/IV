@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {convertSeasonFormat} from "../../utils";
 
 interface SeasonRadioProps {
@@ -27,17 +27,27 @@ const SeasonRadio: React.FC<SeasonRadioProps> = ({
         marginBottom: "30px",
       }}
     >
-      <label>Select Season:</label>
       {seasons.map((season) => (
-        <label key={season}>
+        <label
+          key={season}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginRight: "10px",
+            marginBottom: "10px",
+          }}
+        >
           <input
             type="radio"
             name="season"
             value={season}
             checked={season === selectedSeason}
             onChange={handleSeasonChange}
+            style={{marginRight: "5px"}}
           />
-          {convertSeasonFormat(season)}
+          <span style={{fontSize: "14px", color: "#333"}}>
+            {convertSeasonFormat(season)}
+          </span>
         </label>
       ))}
     </div>

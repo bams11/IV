@@ -65,6 +65,16 @@ const ChartView = () => {
         }}
       >
         <ChartFrame style={{display: "flex", flexDirection: "column"}}>
+          <div
+            style={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: 20,
+              marginTop: "20px",
+            }}
+          >
+            Seasonal Match Data
+          </div>
           <SeasonRadio
             seasons={seasons}
             selectedSeason={selectedSeason}

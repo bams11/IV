@@ -40,13 +40,25 @@ const WinChartView: React.FC<WinChartViewProps> = ({
     return 0;
   });
   return (
-    <ChartFrame>
-      <WinChart
-        data={dataNormalized}
-        type={"grouped"}
-        selectedSeason={selectedSeason}
-        setSelectedSeason={setSelectedSeason}
-      />
+    <ChartFrame style={{flexDirection: "column", alignItems: "center"}}>
+      <div
+        style={{
+          fontWeight: "bold",
+          fontSize: 20,
+          lineHeight: "24px",
+          marginTop: "20px",
+        }}
+      >
+        Total Season Wins-Draws-Losses
+      </div>
+      <div style={{width: "100%", height: `calc(50vh - 44px)`}}>
+        <WinChart
+          data={dataNormalized}
+          type={"grouped"}
+          selectedSeason={selectedSeason}
+          setSelectedSeason={setSelectedSeason}
+        />
+      </div>
     </ChartFrame>
   );
 };

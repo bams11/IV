@@ -34,7 +34,7 @@ export const ChartFrame = styled.div`
 
 export const SmallChartFrame = styled.div`
   flex: 1;
-  height: 170px;
+  height: 160px;
   display: flex;
   justify-content: center;
   align-items: center;
