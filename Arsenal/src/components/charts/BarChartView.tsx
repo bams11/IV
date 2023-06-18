@@ -1,11 +1,19 @@
 import React from "react";
-import {getPositionCounts, keyPlayer, MatchData} from "../../utils";
-import BarChart from "../../styles/BarChart";
+import {
+  cardData,
+  cornerKickData,
+  foulData,
+  goalData,
+  MatchData,
+  shootData,
+  shootOnTargetData,
+  transformData,
+} from "../../utils";
 import {ChartFrame, SmallChartFrame} from "../../styles/theme";
+import {PieChart} from "../../styles/PieChart";
+import BarChart from "../../styles/BarChart";
 
 const BarChartView = ({selectedMatch}: {selectedMatch: MatchData | null}) => {
-  const result = getPositionCounts(keyPlayer);
-
   return (
     <ChartFrame style={{flexDirection: "column"}}>
       <div
@@ -17,7 +25,7 @@ const BarChartView = ({selectedMatch}: {selectedMatch: MatchData | null}) => {
           marginBottom: "10px",
         }}
       >
-        상대팀: {selectedMatch?.opponent}
+        Opponent: {selectedMatch?.opponent}
       </div>
       <div
         style={{
@@ -26,9 +34,65 @@ const BarChartView = ({selectedMatch}: {selectedMatch: MatchData | null}) => {
           display: "flex",
         }}
       >
-        <SmallChartFrame>풀타임 결과</SmallChartFrame>
-        <SmallChartFrame>점유율</SmallChartFrame>
-        <SmallChartFrame>유효슛</SmallChartFrame>
+        <SmallChartFrame>
+          <BarChart
+            data={
+              selectedMatch
+                ? goalData(selectedMatch)
+                : [
+                    {
+                      team: "home",
+                      FHG: 0,
+                      SHG: 0,
+                    },
+                    {
+                      team: "away",
+                      FHG: 0,
+                      SHG: 0,
+                    },
+                  ]
+            }
+            index={"team"}
+            keys={["FHG", "SHG"]}
+          />
+          Total Goals
+        </SmallChartFrame>
+        <SmallChartFrame>
+          <BarChart
+            data={
+              selectedMatch
+                ? shootData(selectedMatch)
+                : [
+                    {
+                      team: "home",
+                      S: 0,
+                    },
+                    {
+                      team: "away",
+                      S: 0,
+                    },
+                  ]
+            }
+            index={"team"}
+            keys={["S"]}
+          />
+          Total Shots
+        </SmallChartFrame>
+        <SmallChartFrame>
+          <BarChart
+            data={
+              selectedMatch
+                ? shootOnTargetData(selectedMatch)
+                : [
+                    {team: "home", ST: 0},
+                    {team: "away", ST: 0},
+                  ]
+            }
+            index={"team"}
+            keys={["ST"]}
+          />
+          Shoots on Target
+        </SmallChartFrame>
       </div>
       <div
         style={{
@@ -37,9 +101,57 @@ const BarChartView = ({selectedMatch}: {selectedMatch: MatchData | null}) => {
           display: "flex",
         }}
       >
-        <SmallChartFrame>코너킥</SmallChartFrame>
-        <SmallChartFrame>파울</SmallChartFrame>
-        <SmallChartFrame>경고 및 퇴장</SmallChartFrame>
+        <SmallChartFrame>
+          <BarChart
+            data={
+              selectedMatch
+                ? cornerKickData(selectedMatch)
+                : [
+                    {team: "home", S: 0},
+                    {team: "away", S: 0},
+                  ]
+            }
+            index={"team"}
+            keys={["CK"]}
+          />
+          Corners
+        </SmallChartFrame>
+        <SmallChartFrame>
+          <BarChart
+            data={
+              selectedMatch
+                ? foulData(selectedMatch)
+                : [
+                    {
+                      team: "home",
+                      F: 0,
+                    },
+                    {
+                      team: "away",
+                      F: 0,
+                    },
+                  ]
+            }
+            index={"team"}
+            keys={["F"]}
+          />
+          Fouls
+        </SmallChartFrame>
+        <SmallChartFrame>
+          <BarChart
+            data={
+              selectedMatch
+                ? cardData(selectedMatch)
+                : [
+                    {team: "home", YC: 0, RC: 0},
+                    {team: "away", YC: 0, RC: 0},
+                  ]
+            }
+            index={"team"}
+            keys={["YC", "RC"]}
+          />
+          Cards
+        </SmallChartFrame>
       </div>
     </ChartFrame>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import {convertSeasonFormat, MatchData} from "../../utils";
-import {ChartFrame, Square} from "../../styles/theme";
+import {ChartFrame} from "../../styles/theme";
+import {Square} from "../../styles/Square";
 export interface DotViewProps {
   matchData: any;
   selectedMatch: MatchData | null;
@@ -28,23 +29,65 @@ const DotView: React.FC<DotViewProps> = ({
   return (
     <ChartFrame
       style={{
+        display: "flex",
         flexWrap: "wrap",
         justifyContent: "center",
+        alignContent: "center",
+        flexDirection: "column",
       }}
     >
-      <div className="season-name">{convertSeasonFormat(season)}</div>
-      <div style={{width: "240px", marginLeft: "10px", marginRight: "10px"}}>
+      <div
+        style={{
+          textAlign: "center",
+          fontWeight: "bold",
+          fontSize: 20,
+          marginBottom: "20px",
+        }}
+      >
+        Seasonal Match Data
+      </div>
+      <div
+        style={{
+          width: "280px",
+          marginLeft: "10px",
+          marginRight: "10px",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         {Object.keys(matchData).length &&
-          matchData[season].map((d: any, index: number) => (
-            <Square
-              key={index}
-              style={{backgroundColor: getBackgroundColor(d.result)}}
-              onClick={() => {
-                console.log(d);
-                setSelectedMatch(d);
-              }}
-            />
-          ))}
+          matchData[season].map((d: any, index: number) => {
+            return (
+              <Square
+                key={index}
+                data={d}
+                style={{
+                  backgroundColor: getBackgroundColor(d.result),
+                  borderColor: "black",
+                  borderWidth: selectedMatch?.date === d.date ? "2px" : "0px",
+                  borderStyle: "solid",
+                  boxSizing: "border-box",
+                }}
+                onClick={() => {
+                  setSelectedMatch(d);
+                }}
+              />
+            );
+          })}
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+          flexDirection: "row",
+          display: "flex",
+          justifyContent: "center",
+          fontSize: 20,
+        }}
+      >
+        <div>season: </div>
+        <div style={{textAlign: "center", fontWeight: "bold"}}>
+          {convertSeasonFormat(season)}
+        </div>
       </div>
     </ChartFrame>
   );

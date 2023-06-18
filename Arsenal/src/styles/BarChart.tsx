@@ -5,73 +5,37 @@ import {ResponsiveBar} from "@nivo/bar";
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const BarChart = ({data}: any) => {
+const BarChart = ({
+  data,
+  index,
+  keys,
+}: {
+  data: any;
+  index: string;
+  keys: string[];
+}) => {
   return (
     <ResponsiveBar
       data={data}
-      keys={["AM", "CM", "DM", "LB", "RW", "LW"]}
-      indexBy="player"
-      margin={{top: 20, right: 100, bottom: 80, left: 60}}
+      keys={keys}
+      indexBy={index}
+      margin={{top: 60, right: 20, bottom: 30, left: 40}}
       padding={0.3}
       valueScale={{type: "linear"}}
       indexScale={{type: "band", round: true}}
+      axisLeft={{
+        tickValues: 3,
+      }}
+      enableGridY={false}
       colors={{scheme: "nivo"}}
-      defs={[
-        {
-          id: "dots",
-          type: "patternDots",
-          background: "inherit",
-          color: "#38bcb2",
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: "lines",
-          type: "patternLines",
-          background: "inherit",
-          color: "#eed312",
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ]}
-      fill={[
-        {
-          match: {
-            id: "fries",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "sandwich",
-          },
-          id: "lines",
-        },
-      ]}
+      defs={[]}
+      fill={[]}
       borderColor={{
         from: "color",
         modifiers: [["darker", 1.6]],
       }}
       axisTop={null}
       axisRight={null}
-      axisBottom={{
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: -90,
-        legend: "player",
-        legendPosition: "middle",
-        legendOffset: 62,
-      }}
-      axisLeft={{
-        tickSize: 5,
-        tickPadding: 5,
-        tickRotation: 0,
-        legend: "positions",
-        legendPosition: "middle",
-        legendOffset: -40,
-      }}
       labelSkipWidth={12}
       labelSkipHeight={12}
       labelTextColor={{
@@ -81,32 +45,19 @@ const BarChart = ({data}: any) => {
       legends={[
         {
           dataFrom: "keys",
-          anchor: "bottom-right",
-          direction: "column",
+          anchor: "top",
+          direction: "row",
           justify: false,
-          translateX: 120,
-          translateY: 0,
-          itemsSpacing: 2,
-          itemWidth: 100,
+          translateX: 0,
+          translateY: -30,
+          itemWidth: 20,
           itemHeight: 20,
-          itemDirection: "left-to-right",
-          itemOpacity: 0.85,
+          itemsSpacing: 30,
           symbolSize: 10,
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemOpacity: 1,
-              },
-            },
-          ],
+          itemDirection: "left-to-right",
         },
       ]}
       role="application"
-      ariaLabel="Nivo bar chart demo"
-      barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in country: " + e.indexValue;
-      }}
     />
   );
 };

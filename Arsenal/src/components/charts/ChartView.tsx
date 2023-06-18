@@ -61,26 +61,15 @@ const ChartView = () => {
           flexDirection: "column",
           display: "flex",
           height: "100%",
-        }}
-      >
-        <WinChartView
-          matchData={matchData}
-          selectedSeason={selectedSeason}
-          setSelectedSeason={setSelectedSeason}
-          season={selectedSeason}
-        />
-        <BarChartView selectedMatch={selectedMatch} />
-      </div>
-      <div
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          display: "flex",
-          height: "100%",
+          boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.1)",
         }}
       >
         <ChartFrame style={{display: "flex", flexDirection: "column"}}>
-          <SeasonRadio seasons={seasons} onSelectSeason={setSelectedSeason} />
+          <SeasonRadio
+            seasons={seasons}
+            selectedSeason={selectedSeason}
+            onSelectSeason={setSelectedSeason}
+          />
           <DotView
             matchData={matchData}
             selectedMatch={selectedMatch}
@@ -93,13 +82,26 @@ const ChartView = () => {
               width: "100%",
               display: "flex",
             }}
-          >
-            <SmallChartFrame>팀 내 득점왕</SmallChartFrame>
-            <SmallChartFrame>팀 내 어시스트 왕</SmallChartFrame>
-          </div>
+          ></div>
         </ChartFrame>
 
         <RadarView season={selectedSeason} />
+      </div>
+      <div
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          display: "flex",
+          height: "100%",
+        }}
+      >
+        <WinChartView
+          matchData={matchData}
+          selectedSeason={selectedSeason}
+          setSelectedSeason={setSelectedSeason}
+          season={selectedSeason}
+        />
+        <BarChartView selectedMatch={selectedMatch} />
       </div>
     </ChartBody>
   );

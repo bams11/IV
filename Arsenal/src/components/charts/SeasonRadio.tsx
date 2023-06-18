@@ -3,14 +3,16 @@ import {convertSeasonFormat} from "../../utils";
 
 interface SeasonRadioProps {
   seasons: string[];
+  selectedSeason: string;
   onSelectSeason: (selectedSeason: string) => void;
 }
 
-const SeasonRadio: React.FC<SeasonRadioProps> = ({seasons, onSelectSeason}) => {
-  const [selectedSeason, setSelectedSeason] = useState("2017-18");
-
+const SeasonRadio: React.FC<SeasonRadioProps> = ({
+  seasons,
+  selectedSeason,
+  onSelectSeason,
+}) => {
   const handleSeasonChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedSeason(event.target.value);
     onSelectSeason(event.target.value);
   };
 
@@ -25,7 +27,7 @@ const SeasonRadio: React.FC<SeasonRadioProps> = ({seasons, onSelectSeason}) => {
         marginBottom: "30px",
       }}
     >
-      <label>시즌 선택:</label>
+      <label>Select Season:</label>
       {seasons.map((season) => (
         <label key={season}>
           <input

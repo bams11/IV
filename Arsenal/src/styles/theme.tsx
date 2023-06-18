@@ -34,15 +34,16 @@ export const ChartFrame = styled.div`
 
 export const SmallChartFrame = styled.div`
   flex: 1;
-  width: 50%;
+  height: 170px;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 `;
 
-export const Square = styled.div`
-  width: 20px;
-  height: 20px;
+export const SquareView = styled.div`
+  width: 28px;
+  height: 28px;
   display: inline-block;
-  margin: 2px;
+  margin: 3px;
 `;

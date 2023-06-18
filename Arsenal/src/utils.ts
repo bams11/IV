@@ -442,3 +442,170 @@ export interface MatchData {
   HR: number;
   AR: number;
 }
+
+interface ChartData {
+  id: string;
+  label: string;
+  value: number;
+  color: string;
+}
+
+export const transformData = (match: MatchData | null): ChartData[] => {
+  if (match === null) {
+    return [];
+  }
+
+  const {HomeTeam, AwayTeam, FTHG, FTAG} = match;
+  const result = [];
+  if (HomeTeam === "Arsenal") {
+    result.push({
+      id: HomeTeam,
+      label: HomeTeam,
+      value: FTHG,
+      color: "red",
+    });
+    result.push({
+      id: AwayTeam,
+      label: AwayTeam,
+      value: FTAG,
+      color: "blue",
+    });
+  } else {
+    result.push({
+      id: AwayTeam,
+      label: AwayTeam,
+      value: FTAG,
+      color: "red",
+    });
+    result.push({
+      id: HomeTeam,
+      label: HomeTeam,
+      value: FTHG,
+      color: "blue",
+    });
+  }
+  return result;
+};
+
+interface GoalData {
+  team: string;
+  FHG: number;
+  SHG: number;
+}
+
+export const goalData = (match: MatchData): GoalData[] => {
+  if (match === null) {
+    return [];
+  }
+  const result = [];
+  result.push({
+    team: match.HomeTeam,
+    FHG: match.HTHG,
+    SHG: match.FTHG - match.HTHG,
+  });
+  result.push({
+    team: match.AwayTeam,
+    FHG: match.HTAG,
+    SHG: match.FTAG - match.HTAG,
+  });
+
+  return result;
+};
+
+interface ShootData {
+  team: string;
+  S: number;
+}
+
+export const shootData = (match: MatchData): ShootData[] => {
+  const result = [];
+  result.push({
+    team: match.HomeTeam,
+    S: match.HS,
+  });
+  result.push({
+    team: match.AwayTeam,
+    S: match.AS,
+  });
+
+  return result;
+};
+
+interface ShootOnTargetData {
+  team: string;
+  ST: number;
+}
+
+export const shootOnTargetData = (match: MatchData): ShootOnTargetData[] => {
+  const result = [];
+  result.push({
+    team: match.HomeTeam,
+    ST: match.HST,
+  });
+  result.push({
+    team: match.AwayTeam,
+    ST: match.AST,
+  });
+
+  return result;
+};
+
+interface CornerKickData {
+  team: string;
+  CK: number;
+}
+
+export const cornerKickData = (match: MatchData): CornerKickData[] => {
+  const result = [];
+  result.push({
+    team: match.HomeTeam,
+    CK: match.HC,
+  });
+  result.push({
+    team: match.AwayTeam,
+    CK: match.AC,
+  });
+
+  return result;
+};
+
+interface FoulData {
+  team: string;
+  F: number;
+}
+
+export const foulData = (match: MatchData): FoulData[] => {
+  const result = [];
+  result.push({
+    team: match.HomeTeam,
+    F: match.HF,
+  });
+  result.push({
+    team: match.AwayTeam,
+    F: match.AF,
+  });
+
+  return result;
+};
+
+interface CardData {
+  team: string;
+  YC: number;
+  RC: number;
+}
+
+export const cardData = (match: MatchData): CardData[] => {
+  const result = [];
+  result.push({
+    team: match.HomeTeam,
+    YC: match.HY,
+    RC: match.HR,
+  });
+  result.push({
+    team: match.AwayTeam,
+    YC: match.AY,
+    RC: match.AR,
+  });
+
+  return result;
+};
