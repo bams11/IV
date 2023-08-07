@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Football Chart</title>
+  </head>
+  <body>
+    <!-- 선수 차트 -->
+    <div id="player-charts">
+      <div id="player-chart">
+        <!-- 서브 차트 1을 표시하는 코드 추가 -->
+      </div>
+      <div class="sub-chart">
+        <!-- 서브 차트 2를 표시하는 코드 추가 -->
+      </div>
+    </div>
+    <!-- 메인 차트 -->
+    <div id="main-chart">
+      <div id="match-map"></div>
+      <div id="graph-container"></div>
+    </div>
+
+    <!-- 매치 차트 -->
+    <div id="match-charts">
+      <div class="sub-chart">
+        <!-- 서브 차트 1을 표시하는 코드 추가 -->
+      </div>
+      <div class="sub-chart">
+        <!-- 서브 차트 2를 표시하는 코드 추가 -->
+      </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+    <div id="slider"></div>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+  </body>
+</html>
+<style>
+  .square {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    margin: 2px;
+  }
+</style>

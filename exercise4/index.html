@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>D3 Bar Chart</title>
+  </head>
+  <body>
+    <div id="chart"></div>
+    <script type="module" src="./js/main.js"></script>
+    <div id="slider"></div>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+  </body>
+</html>
+<style>
+  .bubbles {
+    stroke-width: 1px;
+    stroke: black;
+  }
+  .bubbles:hover {
+    stroke-width: 2px;
+    stroke: white;
+  }
+  .slider {
+    width: 300px;
+    margin-left: 100px;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: 0.2s;
+    transition: opacity 0.2s;
+    border-radius: 5px;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: black;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    background: black;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+
+  .slider-value {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+</style>
